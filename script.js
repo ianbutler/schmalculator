@@ -21,7 +21,8 @@ Calculator.prototype.divide = function( num1, num2 ) {
 
 function ScientificCalculator() {};
 
-ScientificCalculator.prototype = Calculator.prototype;
+ScientificCalculator.prototype = Object.create( Calculator.prototype );
+ScientificCalculator.prototype.constructor = ScientificCalculator;
 
 ScientificCalculator.prototype.sin = function( num1 ) {
 	return Math.sin(num1);
@@ -55,17 +56,5 @@ function withExponents(){
 var calculator = new ScientificCalculator();
 withExponents.call( calculator );
 
-
-
-/*  
-The delay funtion works but isn't a promise.  I don't have any experience 
-working with promises but would love to learn.  It's something that is on my list.
-*/
-var delay = function( time, instance, method, arguments ) {
-	// this doesn't work below
-	// returns 1 because the value doesn't exist yet until after the settimtout delay kicks in.
-	// need to add a promise for it to fully work
-	return setTimeout(instance[method], time, arguments[0], arguments[1]);
-}
 
 
